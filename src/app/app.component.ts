@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  id = 'datepicker';
+  name = 'datepicker';
+  placeholder = 'Choose date';
+
+  iconPosition = 'suffix';
+
+  formControl = new FormControl();
+  formControl2 = new FormControl();
+  formControl3 = new FormControl();
 }
