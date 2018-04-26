@@ -13,33 +13,27 @@ interface IStep {
 })
 export class MaterialStepperComponent implements OnInit {
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-
   steps: IStep[];
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    // this.firstFormGroup = this._formBuilder.group({
-    //   firstCtrl: ["", Validators.required]
-    // });
-    // this.secondFormGroup = this._formBuilder.group({
-    //   secondCtrl: ["", Validators.required]
-    // });
-
     this.steps = [
       {
         form: this._formBuilder.group({ ctrl1: ["", Validators.required] }),
         label: "Step 1"
       },
       {
+        form: this._formBuilder.group({ ctrl2: ["", Validators.required] }),
         label: "Step 2"
       },
       {
-        form: this._formBuilder.group({ ctrl3: ["", Validators.required] }),
         label: "Step 3"
-      }
+      },
+      {
+        form: this._formBuilder.group({ ctrl4: ["", Validators.required] }),
+        label: "Step 4"
+      },
     ];
   }
 }

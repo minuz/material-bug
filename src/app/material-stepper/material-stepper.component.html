@@ -1,42 +1,28 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
-  <!-- <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+  <ng-container *ngFor="let step of steps; let i=index">
+    <mat-step [stepControl]="step.form" *ngIf="step.form;else noForm">
+      <ng-template matStepLabel>{{step.label}}</ng-template>
       <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        <input matInput placeholder="Last name, First name" required>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious *ngIf="i !== 0">Back</button>
+        <button mat-button matStepperNext *ngIf="i !== (steps.length - 1)">Next</button>
+        <button mat-button (click)="stepper.reset()" *ngIf="i === (steps.length - 1)">Reset</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step> -->
-  <mat-step [stepControl]="step.form" *ngFor="let step of steps; let i = index">
-    <ng-template matStepLabel>step.label</ng-template>
-    <mat-form-field>
-      <input matInput placeholder="Last name, First name" required>
-    </mat-form-field>
-    <div>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
+    </mat-step>
+    <ng-template #noForm>
+      <mat-step>
+        <ng-template matStepLabel>{{step.label}}</ng-template>
+        <p>
+          Mussum Ipsum, cacilds vidis litro abertis. Casamentiss faiz malandris se pirulitá. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Quem num gosta di mé, boa gentis num é. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed non consequat odio.
+        </p>
+        <div>
+          <button mat-button matStepperPrevious *ngIf="i !== 0">Back</button>
+          <button mat-button matStepperNext *ngIf="i !== (steps.length - 1)">Next</button>
+          <button mat-button (click)="stepper.reset()" *ngIf="i === (steps.length - 1)">Reset</button>
+        </div>
+      </mat-step>
+    </ng-template>
+  </ng-container>
 </mat-horizontal-stepper>
